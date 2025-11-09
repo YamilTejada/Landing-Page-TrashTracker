@@ -9,7 +9,6 @@
     --gray-100: #f7fafc;
     --gray-200: #edf2f7;
 
-    /* Variables de Sombra Simples */
     --shadow-md: 0 4px 10px rgba(0,0,0,0.08);
     --shadow-lg: 0 8px 25px rgba(0,0,0,0.1);
 }
@@ -34,9 +33,8 @@ body {
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 24px;
+    /* max-width: 1200px;
+    margin: 0 auto; */
     overflow-x: hidden;
 }
 
@@ -77,7 +75,7 @@ small {
     width: 100%; 
     position: sticky;
     top: 0;
-    /*Para que los elementos que tienen transición no lo sobrepasen*/
+
     z-index: 50;
 
     background-color: rgba(244, 251, 242, 0.85); 
@@ -86,6 +84,7 @@ small {
     border-bottom: 1px solid rgba(14, 40, 11, 0.08);
 
 }
+
 
 
 
@@ -144,9 +143,9 @@ small {
 
 main{
     display: flex;
-    flex-direction: column;
-    /* gap: 60px;  */
+    flex-direction: column;    
 }
+
 
 /* 1.hero-section */
 
@@ -885,6 +884,12 @@ footer hr {
     margin: 40px 0 0 0;
 }
 
+/*Menú hamburguesa*/
+
+.main-header__toggle {
+    display: none;
+}
+
 
 /* --- RESPONSIVIDAD SIMPLE --- */
 
@@ -915,35 +920,104 @@ gap: 40px;
 
 
 @media (max-width: 768px) {
-/* --- Móvil --- */
+
 body {
-padding: 0 15px; /* Menos padding */
+padding: 0 15px; 
 }
 
 h1 { font-size: 2.2rem; }
 h2 { font-size: 1.8rem; }
 
-/* Esto hace que el header se "apile" en vez de ocultar el nav */
+
+/*Menú Hamburguesa*/
+
+
 .main-header {
     flex-wrap: wrap;
+    flex-direction: row; 
+    justify-content: space-between; 
+    align-items: center;
     height: auto;
-    padding: 15px 0;
+    padding: 15px;
 }
-.main-header__logo { order: 1; }
 
-.main-header__actions { order: 2; }
 
-.main-header__nav {
-    order: 3;
+/* --- ESTILOS DEL BOTÓN HAMBURGUESA --- */
+.main-header__toggle {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 25px;
+    padding: 0;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}
+
+.main-header__toggle-bar {
     width: 100%;
-    justify-content: center;
-    padding-top: 20px;
+    height: 3px;
+    background-color: #333; 
+    border-radius: 3px;
+    transition: all 0.3s ease;
 }
 
-.main-header__nav ul {
-    flex-wrap: wrap;
-    justify-content: center;
+/* --- ESTILOS DEL MENÚ DESPLEGABLE --- */
+.main-header__menu {
+    /* Por defecto, el menú está oculto */
+    max-height: 0;
+    overflow: hidden; /* Oculta el contenido mientras se cierra */
+    
+    /* Estilos cuando está abierto */
+    flex-basis: 100%; /* Ocupa todo el ancho */
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: 0;
+    
+    /* La transición "bonita" */
+    transition: max-height 0.4s ease-out;
+}
+
+/* --- CLASE ACTIVA (QUE PONE EL JS) --- */
+
+/* 1. Muestra el menú */
+.main-header__menu.is-active {
+    max-height: 500px; 
+    padding-top: 20px; 
+    transition: max-height 0.4s ease-in;
+}
+
+/* 2. Anima el botón a una 'X' */
+.main-header__toggle.is-active .main-header__toggle-bar:nth-child(1) {
+    transform: rotate(45deg) translate(6px, 6px);
+}
+.main-header__toggle.is-active .main-header__toggle-bar:nth-child(2) {
+    opacity: 0;
+}
+.main-header__toggle.is-active .main-header__toggle-bar:nth-child(3) {
+    transform: rotate(-45deg) translate(6px, -6px);
+}
+
+
+/* --- Tus estilos para los items del menú (adaptados) --- */
+
+.main-header__nav,
+.main-header__actions {
+    width: 100%;
+}
+
+.main-header__nav ul,
+.main-header__actions ul {
+    flex-direction: column; /* Apila los links verticalmente */
+    align-items: center;
+    width: 100%;
     gap: 20px;
+}
+
+.main-header__actions ul {
+    padding-top: 20px; /* Separa los botones de la nav */
 }
 
 .hero-section {
@@ -959,6 +1033,7 @@ h2 { font-size: 1.8rem; }
     flex-wrap: wrap; /* Para que los botones se apilen */
 }
 
+
 .footer-grid {
     flex-direction: column;
     text-align: center;
@@ -973,4 +1048,5 @@ h2 { font-size: 1.8rem; }
 .app-stores {
     justify-content: center;
 }
+    
 }
