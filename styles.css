@@ -8,6 +8,9 @@
     --white: #ffffff;
     --gray-100: #f7fafc;
     --gray-200: #edf2f7;
+    --layout-max-width: 1200px;
+    --section-inline-padding: clamp(24px, 6vw, 96px);
+    --section-gap: clamp(40px, 8vh, 96px);
 
     --shadow-md: 0 4px 10px rgba(0,0,0,0.08);
     --shadow-lg: 0 8px 25px rgba(0,0,0,0.1);
@@ -23,6 +26,10 @@
 
 html{
     scroll-behavior: smooth;
+}
+
+section{
+    scroll-margin-top: 120px; /* offset sticky header when navigating */
 }
 
 body {
@@ -74,6 +81,7 @@ small {
     align-items: center;
     height: 100px;
     width: 100%; 
+    padding: 0 var(--section-inline-padding);
     position: sticky;
     top: 0;
 
@@ -143,7 +151,8 @@ small {
 
 main{
     display: flex;
-    flex-direction: column;    
+    flex-direction: column;
+    gap: var(--section-gap);
 }
 
 
@@ -169,7 +178,7 @@ main{
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-    padding: 40px;
+    padding: clamp(80px, 15vw, 160px) var(--section-inline-padding);
 }
 
 
@@ -244,7 +253,10 @@ main{
     flex-wrap: wrap;
     text-align: center;
     gap: 50px;
-    padding: 60px 40px; 
+
+    padding: 60px var(--section-inline-padding);
+    max-width: var(--layout-max-width);
+    margin: 0 auto;
 }
 
 .problem-section .problem-section__info{
@@ -267,9 +279,10 @@ main{
 .problem-section .problem-section__data{
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
     gap: 30px; 
     align-items: stretch; 
+    flex-wrap: wrap;
 }
 
 .problem-section .problem-section__data .stat-card{
@@ -316,12 +329,13 @@ main{
 .how-it-works-section{
     display: flex;
     flex-direction: column;
+    align-items: center;
     text-align: center;
     gap: 50px;
     background-color: var(--eco-light);
-    padding: 60px 40px; 
 
 
+    padding: 60px var(--section-inline-padding); 
 }
 
 .how-it-works-section small{
@@ -335,9 +349,10 @@ main{
 .how-it-works-section__steps-grid{
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
     gap: 30px; 
     align-items: stretch;
+    flex-wrap: wrap;
 }
 
 .how-it-works-section__steps-grid .step-card{
@@ -404,7 +419,7 @@ main{
     background-color: var(--eco-dark);
     color: var(--white);
     text-align: center;
-    padding: 60px 40px;
+    padding: 60px var(--section-inline-padding);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -457,9 +472,13 @@ main{
 .rewards-section{
     display: flex;
     flex-direction: row;
-    padding: 60px 40px; 
-    gap: 50px; 
-    align-items: center;
+
+    padding: 60px var(--section-inline-padding);
+    gap: clamp(40px, 6vw, 80px); 
+    align-items: stretch;
+    max-width: var(--layout-max-width);
+    margin: 0 auto;
+
 }
 
 .rewards-section__content{
@@ -588,7 +607,9 @@ font-weight: bold;
     flex-direction: column;
     align-items: center; 
     text-align: center;
-    padding: 40px 0;
+    padding: 60px var(--section-inline-padding);
+    max-width: var(--layout-max-width);
+    margin: 0 auto;
 }
 
 .faq-section__list {
@@ -669,7 +690,10 @@ font-weight: bold;
     display: flex;
     flex-direction: column;
     text-align: center;
-    padding: 40px 0;
+    padding: 60px var(--section-inline-padding);
+    gap: 30px;
+    max-width: var(--layout-max-width);
+    margin: 0 auto;
 }
 
 .team-section .team-section__grid{
@@ -747,7 +771,7 @@ align-items: center;
 gap: 20px;
 background-color: var(--eco-dark);
 color: white;
-padding: 60px 40px;
+padding: 60px var(--section-inline-padding);
 
 }
 .cta-section h2 {
@@ -787,7 +811,7 @@ footer{
     text-align: left;
     background-color: var(--eco-text);
     color: var(--gray-200);
-    padding: 60px 40px 30px 40px; 
+    padding: 60px var(--section-inline-padding) 30px var(--section-inline-padding); 
 }
 
 footer a{
